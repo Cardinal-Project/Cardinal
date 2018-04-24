@@ -1,0 +1,2 @@
+# Cardinal
+RPG Discord Bot
