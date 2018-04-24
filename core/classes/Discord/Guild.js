@@ -8,12 +8,11 @@ module.exports = class DiscordGuild {
     }
 
     async init(callback) {
-        const dbData = await poolQuery(`SELECT * FROM guildsSettings WHERE guildId='${this.id}'`);
-        if (isEmpty(dbData)) {
+        const cache = new Cache(this.id, 'guildSettings.json');
+        if (cache.get('prefix') == undefined) {
             this.updateGuildCache();
         } else {
-            const dbPrefix = dbData[0].prefix;
-            this.prefix = dbPrefix != null ? dbPrefix : config.bot.defaultPrefix;
+            this.prefix = cache.get('prefix');
         }
         callback.bind(this)();
     }
@@ -26,8 +25,8 @@ module.exports = class DiscordGuild {
             cache.set('prefix', config.bot.defaultPrefix);
             this.prefix = config.bot.defaultPrefix;
         } else {
-            cache.set('prefix', guildData.prefix);
-            this.prefix = guildData.prefix;
+            cache.set('prefix', guildData[0].prefix);
+            this.prefix = guildData[0].prefix;
         }
     }
 }
