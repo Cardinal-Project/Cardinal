@@ -1,0 +1,31 @@
+{
+  "name": "cardinal",
+  "version": "1.0.0",
+  "description": "RPG Discord Bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ciborn/Cardinal.git"
+  },
+  "keywords": [
+    "rpg",
+    "discord",
+    "bot",
+    "ciborn",
+    "cardinal"
+  ],
+  "author": "Ciborn",
+  "license": "EPL-1.0",
+  "bugs": {
+    "url": "https://github.com/Ciborn/Cardinal/issues"
+  },
+  "homepage": "https://github.com/Ciborn/Cardinal#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "mysql": "^2.15.0",
+    "request": "^2.85.0"
+  }
+}

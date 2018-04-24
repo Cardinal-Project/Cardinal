@@ -1,0 +1,6 @@
+node_modules/
+cache/
+config.json
+*code-workspace
+TODO.txt
+package-lock.json
