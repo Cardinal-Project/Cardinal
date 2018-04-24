@@ -20,7 +20,7 @@ module.exports = class DiscordGuild {
 
     async updateGuildCache() {
         const guildData = await poolQuery(`SELECT * FROM guildsSettings WHERE guildId='${this.id}'`);
-        const cache = new Cache(this.id, 'guildSettings');
+        const cache = new Cache(this.id, 'guildSettings.json');
         if (isEmpty(guildData)) {
             await poolQuery(`INSERT INTO guildsSettings (guildId, prefix) VALUES ('${this.id}', '${config.bot.defaultPrefix}')`);
             cache.set('prefix', config.bot.defaultPrefix);
