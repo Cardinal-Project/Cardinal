@@ -1,6 +1,3 @@
-// Vérification du contenu d'un objet
-// v1.0
-
 module.exports = function(obj) {
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     
