@@ -1,0 +1,34 @@
+{
+    "ADMINISTRATOR": {
+        "name": "ADMINISTRATOR",
+        "number": 128
+    },
+    "CHANGE_PERMS": {
+        "name": "CHANGE_PERMS",
+        "number": 64
+    },
+    "ACCESS_SUDO_MODE": {
+        "name": "ACCESS_SUDO_MODE",
+        "number": 32
+    },
+    "QUERY_DB_FULL": {
+        "name": "QUERY_DB_FULL",
+        "number": 16
+    },
+    "QUERY_DB_SELECT": {
+        "name": "QUERY_DB_SELECT",
+        "number": 8
+    },
+    "EVAL_CODE": {
+        "name": "EVAL_CODE",
+        "number": 4
+    },
+    "SHOW_ADMIN_COMMANDS": {
+        "name": "SHOW_ADMIN_COMMANDS",
+        "number": 2
+    },
+    "USE_BOT": {
+        "name": "USE_BOT",
+        "number": 1
+    }
+}
