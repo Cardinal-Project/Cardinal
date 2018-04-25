@@ -10,5 +10,17 @@
         },
         "category": "Admin",
         "shortDesc": "Evaluates Node.JS code"
+    },
+    "ping": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Ping",
+        "path": "core/commands/ping",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Bot",
+        "shortDesc": "Checks bot's latency"
     }
 }
