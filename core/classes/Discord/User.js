@@ -4,8 +4,8 @@ const config = require('./../../../config.json');
 const Cache = require('./../../classes/Cache');
 const Perms = require('./../BotPerms');
 module.exports = class DiscordUser {
-    constructor(userId) {
-        this.id = userId;
+    constructor(user) {
+        this.id = user.id;
     }
 
     async init(callback) {
@@ -13,7 +13,7 @@ module.exports = class DiscordUser {
         if (cache.get('perms') == undefined) {
             await this.updateUserCache();
         } else {
-            this.perms = Perms.decodePermsIntoArray(cache.get('perms'));
+            this.perms = new Perms(cache.get('perms'));
         }
         callback.bind(this)();
     }
@@ -24,10 +24,10 @@ module.exports = class DiscordUser {
         if (isEmpty(userData)) {
             await poolQuery(`INSERT INTO users (userId, perms) VALUES ('${this.id}', ${config.bot.defaultPerms})`);
             cache.set('perms', config.bot.defaultPerms);
-            this.perms = Perms.decodePermsIntoArray(config.bot.defaultPerms);
+            this.perms = new Perms(config.bot.defaultPerms);
         } else {
             cache.set('perms', userData[0].perms);
-            this.perms = Perms.decodePermsIntoArray(userData[0].perms);
+            this.perms = new Perms(userData[0].perms);
         }
     }
 }
