@@ -2,7 +2,7 @@
     "eval": {
         "botPerms": 4,
         "discordPerms": 0,
-        "name": "Eval",
+        "name": "Code Evaluation",
         "path": "core/commands/eval",
         "enabled": {
             "type": 1,
@@ -14,7 +14,7 @@
     "ping": {
         "botPerms": 1,
         "discordPerms": 0,
-        "name": "Ping",
+        "name": "Client Ping",
         "path": "core/commands/ping",
         "enabled": {
             "type": 1,
@@ -26,7 +26,7 @@
     "query": {
         "botPerms": 16,
         "discordPerms": 0,
-        "name": "Query",
+        "name": "Database Query",
         "path": "core/commands/query",
         "enabled": {
             "type": 1,
@@ -34,5 +34,35 @@
         },
         "category": "Admin",
         "shortDesc": "Queries database"
+    },
+    "perms": {
+        "botPerms": 64,
+        "discordPerms": 0,
+        "name": "User Permissions Management",
+        "path": "core/commands/perms",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Admin",
+        "shortDesc": "Manages the permissions of a Cardinal user",
+        "fields": {
+            "Args": "`[*]` **Action** : [add | remove | set]\n`[*]` **Value** : [permName: string, permName: string, permBitfield: int]"
+        }
+    },
+    "help": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Help Pages",
+        "path": "core/commands/help",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Bot",
+        "shortDesc": "Shows commands help",
+        "fields": {
+            "Args": "**Command Name** : [string]"
+        }
     }
 }
