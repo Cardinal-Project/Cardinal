@@ -47,7 +47,7 @@
         "category": "Admin",
         "shortDesc": "Manages the permissions of a Cardinal user",
         "fields": {
-            "Args": "`[*]` **Action** : [add | remove | set]\n`[*]` **Value** : [permName: string, permName: string, permBitfield: int]"
+            "Args": "`[*]` **Action** : [add | remove | set]\n`[*]` **User** : [UserMention | UserID]\n`[*]` **Value** : [permName: string, permName: string, permBitfield: int]"
         }
     },
     "help": {
