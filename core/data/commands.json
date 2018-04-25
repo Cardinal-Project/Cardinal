@@ -22,5 +22,17 @@
         },
         "category": "Bot",
         "shortDesc": "Checks bot's latency"
+    },
+    "query": {
+        "botPerms": 16,
+        "discordPerms": 0,
+        "name": "Query",
+        "path": "core/commands/query",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Admin",
+        "shortDesc": "Queries database"
     }
 }
