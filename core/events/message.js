@@ -13,8 +13,21 @@ module.exports = function(bot, message) {
                 user.init(() => {
                     const args = message.content.slice(guild.prefix.length).split(' ');
                     const command = new Command(args.shift());
+
+                    const execute = function(path) {
+                        try {
+                            require(`./../../${path}`)(bot, message);
+                        } catch (err) {
+                            const embed = new Discord.RichEmbed()
+                                .setTitle('An internal error occured')
+                                .setDescription(`Please report the following error the development team of **${message.author.username}**.\n\`\`\`xl\n${err}\`\`\``)
+                                .setColor('RED');
+                            message.channel.send({embed});
+                        }
+                    }
+
                     if (user.perms.has('ADMINISTRATOR')) {
-                        require(`./../../${command.path}`)(bot, message);
+                        execute(command.path);
                     } else {
                         if (user.perms.has('USE_BOT')) {
                             var isAllowed = [false, false];
@@ -23,12 +36,16 @@ module.exports = function(bot, message) {
                                 user.perms.has(element) ? isAllowed[0] = true : missingPerms[0].push(element);
                             }
     
-                            for (let element of Perms.decodePermsIntoArray(command.discordPerms)) {
-                                message.member.permissionsIn(message.channel).has(element) ? isAllowed[1] = true : missingPerms[1].push(element);
+                            if (command.discordPerms == '') {
+                                isAllowed[1] = true;
+                            } else {
+                                for (let element of Perms.decodePermsIntoArray(command.discordPerms)) {
+                                    message.member.permissionsIn(message.channel).has(element) ? isAllowed[1] = true : missingPerms[1].push(element);
+                                }
                             }
     
                             if (isAllowed[0] && isAllowed[1]) {
-                                require(`./../../${command.path}`)(bot, message);
+                                execute(command.path);
                             } else {
                                 const stringMissingPerms = `${!isEmpty(missingPerms[0]) ? `**${bot.user.username} Permissions : **` + missingPerms[0].join(' ') + '\n' : ''}${!isEmpty(missingPerms[1]) ? '**Discord Permissions : **' + missingPerms[1].join(' ') : ''}`;
                                 const embed = new Discord.RichEmbed()
