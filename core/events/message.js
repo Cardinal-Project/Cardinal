@@ -30,7 +30,7 @@ module.exports = function(bot, message) {
                             if (isAllowed[0] && isAllowed[1]) {
                                 require(`./../../${command.path}`)(bot, message);
                             } else {
-                                const stringMissingPerms = `${!isEmpty(missingPerms[0]) ? '**Cardinal Permissions : **' + missingPerms[0].join(' ') + '\n' : ''}${!isEmpty(missingPerms[1]) ? '**Discord Permissions : **' + missingPerms[1].join(' ') : ''}`;
+                                const stringMissingPerms = `${!isEmpty(missingPerms[0]) ? `**${bot.user.username} Permissions : **` + missingPerms[0].join(' ') + '\n' : ''}${!isEmpty(missingPerms[1]) ? '**Discord Permissions : **' + missingPerms[1].join(' ') : ''}`;
                                 const embed = new Discord.RichEmbed()
                                     .setAuthor(message.author.username, message.author.avatarURL)
                                     .setTitle('Missing Permissions')
