@@ -1,0 +1,14 @@
+{
+    "eval": {
+        "botPerms": 4,
+        "discordPerms": 0,
+        "name": "Eval",
+        "path": "core/commands/eval",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Admin",
+        "shortDesc": "Evaluates Node.JS code"
+    }
+}
