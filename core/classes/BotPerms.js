@@ -1,63 +1,51 @@
+const permissions = require('./../data/permissions.json')
 module.exports = class BotPerms {
     constructor(bitfield) {
-        this.bitfield = bitfield;
-        this.perms = BotPerms.decodePermsIntoArray(this.bitfield);
+        this.setBitfield(bitfield);
     }
 
     has(perm) {
-        const perms = BotPerms.decodePermsIntoArray(this.bitfield);
-        if (perms.indexOf('ADMINISTRATOR') != -1) {
+        if (this.perms.indexOf('ADMINISTRATOR') != -1) {
             return true;
         } else {
-            return perms.indexOf(perm) != -1 ? true : false;
+            return this.perms.indexOf(perm) != -1 ? true : false;
         }
+    }
+    
+    add(perm) {
+        const supportedPerms = Object.keys(permissions);
+        if (supportedPerms.indexOf(perm) != -1) {
+            return this.perms.indexOf(perm) != -1 ? new TypeError('Perm already exists') : this.bitfield + permissions[perm].number;
+        }
+    }
+
+    remove(perm) {
+        const supportedPerms = Object.keys(permissions);
+        if (supportedPerms.indexOf(perm) != -1) {
+            return this.perms.indexOf(perm) != -1 ? this.bitfield - permissions[perm].number : new TypeError('Perm does not exist yet');
+        }
+    }
+
+    setBitfield(bitfield) {
+        this.bitfield = bitfield;
+        this.perms = BotPerms.decodePermsIntoArray(this.bitfield);
     }
 
     static decodePermsIntoArray(bitfield) {
         var computing = bitfield;
         var permsArray = [];
-        const perms = {
-            "ADMINISTRATOR": {
-                name: "ADMINISTRATOR",
-                number: 64
-            },
-            "ACCESS_SUDO_MODE": {
-                name: "ACCESS_SUDO_MODE",
-                number: 32
-            },
-            "QUERY_DB_FULL": {
-                name: "QUERY_DB_FULL",
-                number: 16
-            },
-            "QUERY_DB_SELECT": {
-                name: "QUERY_DB_SELECT",
-                number: 8
-            },
-            "EVAL_CODE": {
-                name: "EVAL_CODE",
-                number: 4
-            },
-            "SHOW_ADMIN_COMMANDS": {
-                name: "SHOW_ADMIN_COMMANDS",
-                number: 2
-            },
-            "USE_BOT": {
-                name: "USE_BOT",
-                number: 1
-            }
-        };
 
         var maxBitfield = 0;
-        Object.keys(perms).forEach(element => {
-            maxBitfield += perms[element].number;
+        Object.keys(permissions).forEach(element => {
+            maxBitfield += permissions[element].number;
         })
 
         if (bitfield <= maxBitfield) {
             while (computing > 0) {
-                Object.keys(perms).forEach(element => {
-                    if (computing >= perms[element].number) {
-                        permsArray.push(perms[element].name);
-                        computing -= perms[element].number;
+                Object.keys(permissions).forEach(element => {
+                    if (computing >= permissions[element].number) {
+                        permsArray.push(permissions[element].name);
+                        computing -= permissions[element].number;
                     }
                 })
             }
