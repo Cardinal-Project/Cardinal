@@ -8,5 +8,5 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
-    message.reply('In Development.');
+    require('./core/events/message')(bot, message);
 });
