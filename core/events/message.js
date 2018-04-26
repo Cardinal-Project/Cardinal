@@ -38,8 +38,10 @@ module.exports = function(bot, message) {
                         if (command.discordPerms == '') {
                             isAllowed[1] = true;
                         } else {
-                            for (let element of Perms.decodePermsIntoArray(command.discordPerms)) {
-                                message.member.permissionsIn(message.channel).has(element) ? isAllowed[1] = true : missingPerms[1].push(element);
+                            for (let element of command.discordPerms.split(' ')) {
+                                if (message.member.permissionsIn(message.channel).has(element)) {
+                                    isAllowed[1] = true;
+                                }
                             }
                         }
 
