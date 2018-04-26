@@ -1,0 +1,97 @@
+{
+    "races": {
+        "elf": {
+            "baseAttributes": {
+                "str": 1,
+                "vit": 2,
+                "dex": 2,
+                "int": 4,
+                "def": 1
+            }
+        },
+        "dwarf": {
+            "baseAttributes": {
+                "str": 3,
+                "vit": 2,
+                "dex": 1,
+                "int": 1,
+                "def": 3
+            }
+        },
+        "human": {
+            "baseAttributes": {
+                "str": 2,
+                "vit": 2,
+                "dex": 2,
+                "int": 2,
+                "def": 2
+            },
+            "upgrades": ["juggernaut"]
+        },
+        "goblin": {
+            "baseAttributes": {
+                "str": 2,
+                "vit": 2,
+                "dex": 3,
+                "int": 1,
+                "def": 2
+            }
+        }
+    },
+    "classes": {
+        "warrior": {
+            "baseAttributes": {
+                "str": 4,
+                "vit": 2,
+                "dex": 1,
+                "int": 1,
+                "def": 2
+            }
+        },
+        "wizard": {
+            "baseAttributes": {
+                "str": 1,
+                "vit": 2,
+                "dex": 2,
+                "int": 4,
+                "def": 1
+            }
+        },
+        "archer": {
+            "baseAttributes": {
+                "str": 2,
+                "vit": 2,
+                "dex": 4,
+                "int": 1,
+                "def": 1
+            }
+        },
+        "rogue": {
+            "baseAttributes": {
+                "str": 1,
+                "vit": 2,
+                "dex": 4,
+                "int": 2,
+                "def": 1
+            }
+        },
+        "paladin": {
+            "baseAttributes": {
+                "str": 2,
+                "vit": 4,
+                "dex": 1,
+                "int": 1,
+                "def": 2
+            }
+        },
+        "tank": {
+            "baseAttributes": {
+                "str": 1,
+                "vit": 3,
+                "dex": 1,
+                "int": 1,
+                "def": 4
+            }
+        }
+    }
+}
