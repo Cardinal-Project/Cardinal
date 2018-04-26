@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Ciborn/Cardinal#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
+    "keygenerator": "^1.0.4",
     "mysql": "^2.15.0",
     "request": "^2.85.0"
   }
