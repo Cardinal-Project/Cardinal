@@ -8,7 +8,6 @@ const Discord = require('discord.js');
 module.exports = async function(bot, message) {
     const sendInvalidArgsEmbed = function() {
         const embed = new Discord.RichEmbed()
-            .setAuthor(message.author.username, message.author.avatarURL)
             .setTitle('Invalid Arguments')
             .setDescription(`There is a problem with your args.`)
             .setColor('ORANGE');
