@@ -14,6 +14,7 @@ module.exports = class DiscordUser {
             await this.updateUserCache();
         } else {
             this.perms = new Perms(cache.get('perms'));
+            this.activeProfile = cache.get('activeProfile');
         }
         callback.bind(this)();
     }
@@ -28,6 +29,8 @@ module.exports = class DiscordUser {
         } else {
             cache.set('perms', userData[0].perms);
             this.perms = new Perms(userData[0].perms);
+            cache.set('activeProfile', userData[0].perms);
+            this.activeProfile = userData[0].activeProfile;
         }
     }
 }
