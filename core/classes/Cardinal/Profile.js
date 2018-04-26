@@ -1,5 +1,4 @@
-const keygen = require('keygenerator');
-const Player = require('./../Player');
+const Player = require('./Player');
 const Cache = require('./../Cache');
 module.exports = class CardinalProfile {
     constructor(profileId) {
@@ -9,7 +8,7 @@ module.exports = class CardinalProfile {
     async init(callback) {
         const cache = new Cache(this.id, 'profileData.json');
         if (cache.get('profileId') == undefined) {
-
+            this.updateProfileCache();
         } else {
             this.userId = cache.get('userId');
             this.current = cache.get('current');
@@ -23,7 +22,7 @@ module.exports = class CardinalProfile {
         const profileData = await poolQuery(`SELECT * FROM profiles WHERE profileId='${this.id}'`);
         const cache = new Cache(this.id, 'profileData.json');
         if (isEmpty(profileData)) {
-            return new Error(`The Profile object cannot be created by itself.`)
+            return new Error(`The Profile object cannot be created by itself.`);
         } else {
             for (let [key, value] of guildData[0]) {
                 cache.set(key, value);
