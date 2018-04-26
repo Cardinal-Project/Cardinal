@@ -17,15 +17,16 @@ module.exports = function(bot, message) {
             var embed = new Discord.RichEmbed()
                 .setTitle(command.name)
                 .setColor('GOLD')
+                .setThumbnail(bot.user.avatarURL)
                 .setDescription(command.shortDesc);
             
             const requiredBotPerms = new BotPerms(command.botPerms);
-            if (requiredBotPerms.has('USE_BOT')) {
+            if (!requiredBotPerms.has('USE_BOT')) {
                 embed.addField('Required Bots Permissions', requiredBotPerms.perms.join(' '), true);
             }
             
             if (command.discordPerms != '') {
-                embed.addField('Required Discord Permissions', command.discordPerms.replace('ADMINISTRATOR', '').trim(), true);
+                embed.addField('Required Discord Permissions', command.discordPerms.trim(), true);
             }
 
             if (typeof command.fields != 'undefined') {
