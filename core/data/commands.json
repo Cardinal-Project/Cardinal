@@ -47,7 +47,7 @@
         "category": "Admin",
         "shortDesc": "Manages the permissions of a Cardinal user",
         "fields": {
-            "Args": "`[*]` **Action** : [add | remove | set]\n`[*]` **User** : [UserMention | UserID]\n`[*]` **Value** : [permName: string, permName: string, permBitfield: int]"
+            "Args": "`[*]` **Action** : [add | remove | set]\n`[*]` **User** : [UserMention | UserID]\n`[*]` **Value** : [permName | permName | permBitfield]"
         }
     },
     "help": {
@@ -64,5 +64,17 @@
         "fields": {
             "Args": "**Command Name** : [string]"
         }
+    },
+    "stats": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Character Statistics",
+        "path": "core/commands/stats",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Shows character statistics"
     }
 }
