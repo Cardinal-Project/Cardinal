@@ -1,3 +1,5 @@
+const poolQuery = require('./../../functions/database/poolQuery');
+const isEmpty = require('./../../functions/utils/isEmpty');
 const Player = require('./Player');
 const Cache = require('./../Cache');
 module.exports = class CardinalProfile {
@@ -13,6 +15,7 @@ module.exports = class CardinalProfile {
             this.userId = cache.get('userId');
             this.current = cache.get('current');
             this.banned = cache.get('banned');
+            this.createdTimestamp = cache.get('createdTimestamp');
             this.player = new Player(this.id);
         }
         callback.bind(this)();
@@ -24,13 +27,10 @@ module.exports = class CardinalProfile {
         if (isEmpty(profileData)) {
             return new Error(`The Profile object cannot be created by itself.`);
         } else {
-            for (let [key, value] of guildData[0]) {
+            for (let [key, value] of Object.entries(profileData[0])) {
                 cache.set(key, value);
                 this[key] = value;
             }
-            this.job = this.skills.job;
-            this.jobXP = this.skills.job.xp;
-            this.jobLevel = this.skills.jobLevel;
         }
     }
 }
