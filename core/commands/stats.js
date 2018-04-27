@@ -100,13 +100,13 @@ module.exports = function(bot, message) {
                     if (user.activeProfile != undefined) {
                         const embed = new Discord.RichEmbed()
                             .setTitle(`Cardinal Character Statistics of ${player.nickname}`)
-                            .addField(`Attributes`, `**Available Points** : ${player.availablePoints}\n**Strength** : ${player.attributes.str} | **Defense** : ${player.attributes.def} | **Dexterity** : ${player.attributes.dex} | **Vitality** : ${player.attributes.vit} | **Intelligence** : ${player.attributes.int}`, true)
-                            .addField(`Type`, `${player.class[0].toUpperCase() + player.class.slice(1)} ${player.race[0].toUpperCase() + player.race.slice(1)}`, true)
+                            .addField(`Type`, `${player.race[0].toUpperCase() + player.race.slice(1)} ${player.class[0].toUpperCase() + player.class.slice(1)}`, true)
                             .addField(`Level`, `\`[P1]\` **Lv${player.level}**`, true)
-                            .addField(`Experience`, `${player.xp} XP / ${player.xpToLevelUp} XP`, true)
+                            .addField(`Experience`, `${player.xp} XP / ${player.xpEndLevel} XP`, true)
                             .addField(`HP`, `${player.hp} HP / ${player.attributes.hp} HP`, true)
                             .addField(`Silver`, `${player.gold} Silver`, true)
                             .addField(`Stamina`, `${player.stamina} ST / ${player.attributes.stamina} ST`, true)
+                            .addField(`Attributes`, `**Available Points** : ${player.availablePoints}\n**Strength** : ${player.attributes.str} | **Defense** : ${player.attributes.def} | **Dexterity** : ${player.attributes.dex} | **Vitality** : ${player.attributes.vit} | **Intelligence** : ${player.attributes.int}`, true)
                             .setFooter(`Account Created`, message.author.avatarURL)
                             .setTimestamp(new Date(profile.createdTimestamp))
                             .setColor('BLUE');

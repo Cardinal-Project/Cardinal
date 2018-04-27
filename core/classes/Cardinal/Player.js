@@ -19,7 +19,7 @@ module.exports = class Player {
 
             this.xp = cache.get('xp');
             this.level = xp.levelFromXP(xp)[0];
-            this.xpToLevelUp = this.xp + xp.levelFromXP(this.xp)[1];
+            this.xpEndLevel = xp.XPToLevelUp(this.level);
             this.gold = cache.get('gold');
             this.hp = cache.get('hp');
             this.stamina = cache.get('stamina');
