@@ -3,6 +3,7 @@ const classesRaces = require('./../data/classesRaces.json');
 const Profile = require('./../classes/Cardinal/Profile');
 const isEmpty = require('./../functions/utils/isEmpty');
 const User = require('./../classes/Discord/User');
+const Cache = require('./../classes/Cache');
 const Args = require('./../classes/Args');
 const keygen = require('keygenerator');
 const Discord = require('discord.js');
@@ -43,7 +44,18 @@ module.exports = function(bot, message) {
                         .setColor('ORANGE');
                     message.channel.send({embed});
                 } else {
+                    const usedKeys = await poolQuery(`SELECT profileId FROM profiles`);
                     const key = 'P' + keygen._({forceUppercase: true, length: 7, chars: false});
+                    var keyAlreadyFound = false;
+                    do {
+                        keyAlreadyFound = false;
+                        for (let value of Object.values(usedKeys)) {
+                            if (value == key) {
+                                key = 'P' + keygen._({forceUppercase: true, length: 7, chars: false});
+                                keyAlreadyFound = true;
+                            }
+                        }
+                    } while (keyAlreadyFound == true)
                     const attributes = {
                         availablePoints: 10,
                         attributes: {
@@ -54,12 +66,17 @@ module.exports = function(bot, message) {
                             def: classesRaces.classes[collectedData[1]].baseAttributes.def + classesRaces.races[collectedData[2]].baseAttributes.def
                         }
                     };
-                    poolQuery(`INSERT INTO profiles (profileId, userId, nickname, class, race, xp, gold, inventory, attributes, skills, banned) VALUES ('${key}', '${message.author.id}', '${collectedData[0]}', '${collectedData[1]}', '${collectedData[2]}', 0, 0, '{}', '${JSON.stringify(attributes)}', '{}', 0 )`).then(success => {
-                        const embed = new Discord.RichEmbed()
-                            .setTitle('Profile Created')
-                            .setDescription(`Your character has been successfully created. Below are some infos about it.\n**Profile ID** : ${key}\n**Nickname** : ${collectedData[0]}\n**Type**: ${collectedData[1][0].toUpperCase() + collectedData[1].slice(1)} ${collectedData[2][0].toUpperCase() + collectedData[2].slice(1)}`)
-                            .setColor('GREEN');
-                        message.channel.send({embed});
+                    poolQuery(`INSERT INTO profiles (profileId, userId, nickname, class, race, hp, stamina, xp, gold, inventory, attributes, skills, createdTimestamp, banned) VALUES ('${key}', '${user.id}', '${collectedData[0]}', '${collectedData[1]}', '${collectedData[2]}', ${require('./../functions/formulas/attributes').HPFromVitality(attributes.attributes.vit)}, ${require('./../functions/formulas/attributes').staminaFromVitality(attributes.attributes.vit)}, 0, 0, '{}', '${JSON.stringify(attributes)}', '{}', ${new Date().getTime()}, 0 )`).then(async success => {
+                        const profile = new Profile(key);
+                        profile.init(async () => {
+                            const embed = new Discord.RichEmbed()
+                                .setTitle('Profile Created')
+                                .setDescription(`Your character has been successfully created. Below are some infos about it.\n**Profile ID** : ${key}\n**Nickname** : ${collectedData[0]}\n**Type**: ${collectedData[1][0].toUpperCase() + collectedData[1].slice(1)} ${collectedData[2][0].toUpperCase() + collectedData[2].slice(1)}`)
+                                .setColor('GREEN');
+                            message.channel.send({embed});
+                            const cache = new Cache(user.id, 'userSettings.json').set('activeProfile', key);
+                            await poolQuery(`UPDATE users SET activeProfile='${key}' WHERE userId='${user.id}'`)
+                        })
                     }).catch(err => {
                         const embed = new Discord.RichEmbed()
                             .setTitle('An internal error occured')
@@ -76,7 +93,33 @@ module.exports = function(bot, message) {
                 message.channel.send({embed});
             }
         } else {
-            // WIP
+            const profile = new Profile(user.activeProfile);
+            profile.init(() => {
+                const player = profile.player;
+                player.init(() => {
+                    if (user.activeProfile != undefined) {
+                        const embed = new Discord.RichEmbed()
+                            .setTitle(`Cardinal Character Statistics of ${player.nickname}`)
+                            .addField(`Attributes`, `**Available Points** : ${player.availablePoints}\n**Strength** : ${player.attributes.str} | **Defense** : ${player.attributes.def} | **Dexterity** : ${player.attributes.dex} | **Vitality** : ${player.attributes.vit} | **Intelligence** : ${player.attributes.int}`, true)
+                            .addField(`Type`, `${player.class[0].toUpperCase() + player.class.slice(1)} ${player.race[0].toUpperCase() + player.race.slice(1)}`, true)
+                            .addField(`Level`, `\`[P1]\` **Lv${player.level}**`, true)
+                            .addField(`Experience`, `${player.xp} XP / ${player.xpToLevelUp} XP`, true)
+                            .addField(`HP`, `${player.hp} HP / ${player.attributes.hp} HP`, true)
+                            .addField(`Silver`, `${player.gold} Silver`, true)
+                            .addField(`Stamina`, `${player.stamina} ST / ${player.attributes.stamina} ST`, true)
+                            .setFooter(`Account Created`, message.author.avatarURL)
+                            .setTimestamp(new Date(profile.createdTimestamp))
+                            .setColor('BLUE');
+                        message.channel.send({embed});
+                    } else {
+                        const embed = new Discord.RichEmbed()
+                            .setTitle('No Profile Found')
+                            .setDescription(`No active profile from you has been found. Make sure you have one.`)
+                            .setColor('ORANGE');
+                        message.channel.send({embed});
+                    }
+                });
+            });
         }
     });
 }
