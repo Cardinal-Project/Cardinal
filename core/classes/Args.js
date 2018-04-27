@@ -1,6 +1,6 @@
 module.exports = class Args {
     constructor(string, separator) {
-        this.separator = separator != null ? separator : ' ';
+        this.separator = separator;
         this.string = string;
         this.args = string.split(separator);
     }
