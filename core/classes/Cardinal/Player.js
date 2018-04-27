@@ -1,0 +1,41 @@
+const attributes = require('./../../functions/formulas/attributes');
+const xp = require('./../../functions/formulas/xp');
+const Cache = require('./../Cache');
+const Guild = require('./Guild');
+module.exports = class Player {
+    constructor(profileId) {
+        this.profileId = profileId;
+    }
+
+    async init(callback) {
+        const cache = new Cache(this.profileId, 'profileData.json');
+        if (cache.get('profileId') == undefined) {
+
+        } else {
+            // this.guild = new Guild(cache.get('guildId'));
+            this.nickname = cache.get('nickname');
+            this.class = cache.get('class');
+            this.race = cache.get('race');
+
+            this.xp = cache.get('xp');
+            this.level = xp.levelFromXP(xp)[0];
+            this.xpToLevelUp = this.xp + xp.levelFromXP(this.xp)[1];
+            this.gold = cache.get('gold');
+            this.hp = cache.get('hp');
+            this.stamina = cache.get('stamina');
+
+            this.inventory = cache.get('inventory');
+
+            this.availablePoints = JSON.parse(cache.get('attributes')).availablePoints;
+            this.attributes = JSON.parse(cache.get('attributes')).attributes;
+            this.attributes.hp = attributes.HPFromVitality(this.attributes.vit);
+            this.attributes.stamina = attributes.staminaFromVitality(this.attributes.vit);
+
+            this.skills = cache.get('skills');
+            /*this.job = this.skills.job;
+            this.jobXP = this.skills.job.xp;
+            this.jobLevel = this.skills.jobLevel;*/
+        }
+        callback.bind(this)();
+    }
+}
