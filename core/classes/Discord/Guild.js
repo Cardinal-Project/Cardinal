@@ -10,7 +10,7 @@ module.exports = class DiscordGuild {
     async init(callback) {
         const cache = new Cache(this.id, 'guildSettings.json');
         if (cache.get('prefix') == undefined) {
-            this.updateGuildCache();
+            await this.updateGuildCache();
         } else {
             this.prefix = cache.get('prefix');
         }

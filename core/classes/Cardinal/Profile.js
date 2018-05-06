@@ -9,14 +9,14 @@ module.exports = class CardinalProfile {
 
     async init(callback) {
         const cache = new Cache(this.id, 'profileData.json');
+        this.player = new Player(this.id);
         if (cache.get('profileId') == undefined) {
-            this.updateProfileCache();
+            await this.updateProfileCache();
         } else {
             this.userId = cache.get('userId');
             this.current = cache.get('current');
             this.banned = cache.get('banned');
             this.createdTimestamp = cache.get('createdTimestamp');
-            this.player = new Player(this.id);
         }
         callback.bind(this)();
     }
@@ -25,6 +25,7 @@ module.exports = class CardinalProfile {
         const profileData = await poolQuery(`SELECT * FROM profiles WHERE profileId='${this.id}'`);
         const cache = new Cache(this.id, 'profileData.json');
         if (isEmpty(profileData)) {
+            console.log(cache.get('profileId'))
             return new Error(`The Profile object cannot be created by itself.`);
         } else {
             for (let [key, value] of Object.entries(profileData[0])) {

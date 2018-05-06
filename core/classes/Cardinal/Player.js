@@ -16,10 +16,12 @@ module.exports = class Player {
             this.nickname = cache.get('nickname');
             this.class = cache.get('class');
             this.race = cache.get('race');
+            this.title = cache.get('title');
 
             this.xp = cache.get('xp');
             this.level = xp.levelFromXP(xp)[0];
             this.xpEndLevel = xp.XPToLevelUp(this.level);
+            this.prestige = cache.get('prestige');
             this.gold = cache.get('gold');
             this.hp = cache.get('hp');
             this.stamina = cache.get('stamina');
