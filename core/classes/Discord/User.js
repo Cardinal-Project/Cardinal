@@ -1,5 +1,6 @@
 const poolQuery = require('./../../functions/database/poolQuery');
 const isEmpty = require('./../../functions/utils/isEmpty');
+const Profile = require('./../Cardinal/Profile');
 const config = require('./../../../config.json');
 const Cache = require('./../../classes/Cache');
 const Perms = require('./../BotPerms');
@@ -14,7 +15,7 @@ module.exports = class DiscordUser {
             await this.updateUserCache();
         } else {
             this.perms = new Perms(cache.get('perms'));
-            this.activeProfile = cache.get('activeProfile');
+            this.activeProfile = cache.get('activeProfile') != null ? new Profile(cache.get('activeProfile')) : null;
         }
         callback.bind(this)();
     }
@@ -29,8 +30,8 @@ module.exports = class DiscordUser {
         } else {
             cache.set('perms', userData[0].perms);
             this.perms = new Perms(userData[0].perms);
-            cache.set('activeProfile', userData[0].perms);
-            this.activeProfile = userData[0].activeProfile;
+            cache.set('activeProfile', userData[0].activeProfile);
+            this.activeProfile = userData[0].activeProfile != null ? new Profile(userData[0].activeProfile) : null;
         }
     }
 }
