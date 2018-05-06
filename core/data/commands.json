@@ -76,5 +76,17 @@
         },
         "category": "Game",
         "shortDesc": "Shows character statistics"
+    },
+    "start": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Character Creation",
+        "path": "core/commands/start",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Starts character creation wizard"
     }
 }
