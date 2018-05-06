@@ -4,6 +4,7 @@ module.exports = class Cache {
     constructor(subDir, fileName) {
         this.subDir = subDir == undefined ? null : subDir;
         this.fileName = fileName == undefined ? 'cache.json' : fileName;
+        fs.existsSync('cache') ? null : fs.mkdirSync('cache');
         if (this.subDir != null) {
             fs.existsSync(`cache/${this.subDir}`) ? null : fs.mkdirSync(`cache/${this.subDir}`);
         }
@@ -16,7 +17,6 @@ module.exports = class Cache {
     }
 
     set(key, value) {
-        fs.existsSync('cache') ? null : fs.mkdirSync('cache');
         if (this.subDir == null) {
             this.writePath(`cache/${this.fileName}`, key, value);
         } else {
