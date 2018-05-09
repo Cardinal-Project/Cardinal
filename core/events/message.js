@@ -21,15 +21,12 @@ module.exports = function(bot, message) {
                                     require(`./../../${path}`)(bot, message);
                                 } catch (err) {
                                     var modifiedErr = require('util').inspect(err, false, null).split('\n');
-                                    modifierErr = modifiedErr.pop();
-                                    modifierErr = modifiedErr.pop();
-                                    modifierErr = modifiedErr.pop();
-                                    modifierErr = modifiedErr.pop();
-                                    modifierErr = modifiedErr.pop();
-                                    modifierErr = modifiedErr.pop();
+                                    for (i = 0; i <= 1; i++) {
+                                        modifiedErr.pop();
+                                    }
                                     const embed = new Discord.RichEmbed()
                                         .setTitle('An internal error occured')
-                                        .setDescription(`Please report the following error to the development team of **${message.author.username}**.\n\`\`\`xl\n${modifiedErr.join('\n')}\`\`\``)
+                                        .setDescription(`Please report the following error to the development team of **${bot.user.username}**.\n\`\`\`xl\n${modifiedErr.join('\n')}\`\`\``)
                                         .setColor('RED');
                                     message.channel.send({embed});
                                 }
