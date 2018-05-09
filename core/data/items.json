@@ -1,0 +1,16 @@
+{
+    "1": {
+        "name": "Stick",
+        "description": "In Honor of Toby Fox, :heart: Undertale.",
+        "weapon": {
+            "race": {
+                "human": {
+                    "dmgBonusFormula": "* 1.05"
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+        }
+    }
+}
