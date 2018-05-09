@@ -88,5 +88,29 @@
         },
         "category": "Game",
         "shortDesc": "Starts character creation wizard"
+    },
+    "restart": {
+        "botPerms": 64,
+        "discordPerms": 0,
+        "name": "Reloading Bot",
+        "path": "core/commands/restart",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Admin",
+        "shortDesc": "Restarts the bot"
+    },
+    "inventory": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Player Inventory",
+        "path": "core/commands/inventory",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Shows player's inventory"
     }
 }
