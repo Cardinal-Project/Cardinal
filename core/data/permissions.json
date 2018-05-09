@@ -1,10 +1,14 @@
 {
     "ADMINISTRATOR": {
         "name": "ADMINISTRATOR",
-        "number": 128
+        "number": 256
     },
     "CHANGE_PERMS": {
         "name": "CHANGE_PERMS",
+        "number": 128
+    },
+    "RELOAD_BOT": {
+        "name": "RELOAD_BOT",
         "number": 64
     },
     "ACCESS_SUDO_MODE": {
