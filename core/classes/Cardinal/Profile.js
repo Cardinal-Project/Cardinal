@@ -25,7 +25,6 @@ module.exports = class CardinalProfile {
         const profileData = await poolQuery(`SELECT * FROM profiles WHERE profileId='${this.id}'`);
         const cache = new Cache(this.id, 'profileData.json');
         if (isEmpty(profileData)) {
-            console.log(cache.get('profileId'))
             return new Error(`The Profile object cannot be created by itself.`);
         } else {
             for (let [key, value] of Object.entries(profileData[0])) {
