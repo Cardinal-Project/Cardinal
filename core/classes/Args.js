@@ -18,7 +18,7 @@ module.exports = class Args {
        * @param key Key to remove
     */
     removeArg(key) {
-        if (key.indexOf('-')) {
+        if (key.indexOf('-') != -1) {
             delete this.args[this.lookFor(key)];
             delete this.args[this.after(key)];
         } else {
