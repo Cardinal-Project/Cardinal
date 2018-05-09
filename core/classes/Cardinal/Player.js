@@ -1,5 +1,6 @@
 const attributes = require('./../../functions/formulas/attributes');
 const xp = require('./../../functions/formulas/xp');
+const Inventory = require('./Inventory');
 const Cache = require('./../Cache');
 const Guild = require('./Guild');
 module.exports = class Player {
@@ -26,7 +27,7 @@ module.exports = class Player {
             this.hp = cache.get('hp');
             this.stamina = cache.get('stamina');
 
-            this.inventory = cache.get('inventory');
+            this.inventory = new Inventory(this.profileId, cache.get('inventory'));
 
             this.availablePoints = JSON.parse(cache.get('attributes')).availablePoints;
             this.attributes = JSON.parse(cache.get('attributes')).attributes;
