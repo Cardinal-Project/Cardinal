@@ -22,7 +22,9 @@ module.exports = class Inventory {
     }
 
     static fetchItem(itemId) {
-        return items[itemId];
+        var item = items[itemId];
+        item.type = Object.keys(item)[2];
+        return item;
     }
 
     fetchItems() {
