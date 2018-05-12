@@ -1,4 +1,5 @@
 const attributes = require('./../../functions/formulas/attributes');
+const fight = require('./../../functions/formulas/fight');
 const xp = require('./../../functions/formulas/xp');
 const Inventory = require('./Inventory');
 const Cache = require('./../Cache');
@@ -33,6 +34,12 @@ module.exports = class Player {
             this.attributes = JSON.parse(cache.get('attributes')).attributes;
             this.attributes.hp = attributes.HPFromVitality(this.attributes.vit);
             this.attributes.stamina = attributes.staminaFromVitality(this.attributes.vit);
+
+            this.fight = {
+                fightTime : fight.fightTimeFromStamina(this.attributes.stamina),
+                turnSpeed : fight.turnSpeed(this.attributes.dexterity)
+            }
+            this.fight.turnNumber = fight.turnNumber(this.fight.fightTime, this.fight.turnSpeed);
 
             this.skills = cache.get('skills');
             /*this.job = this.skills.job;
