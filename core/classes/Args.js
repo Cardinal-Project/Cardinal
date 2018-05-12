@@ -53,6 +53,6 @@ module.exports = class Args {
     }
 
     isEmpty() {
-        return this.args.length > 1 ? true : false;
+        return this.args.length > 0 ? false : true;
     }
 }
