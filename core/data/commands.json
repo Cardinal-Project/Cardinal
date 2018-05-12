@@ -112,5 +112,20 @@
         },
         "category": "Game",
         "shortDesc": "Shows player's inventory"
+    },
+    "item": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Item Description",
+        "path": "core/commands/item",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Shows item's informations",
+        "fields": {
+            "Args": "**Item Name** : [string]"
+        }
     }
 }
