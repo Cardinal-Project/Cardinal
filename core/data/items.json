@@ -1,16 +1,47 @@
 {
     "1": {
         "name": "Stick",
-        "description": "In Honor of Toby Fox, :heart: Undertale.",
+        "description": "It fills you with determination.",
         "weapon": {
             "race": {
                 "human": {
-                    "dmgBonusFormula": "* 1.05"
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
                 }
             }
         },
         "requirements": {
             "level": 1
+        }
+    },
+    "2": {
+        "name": "Water Flask",
+        "description": "Better than nothing.",
+        "potion": {
+            "hp": 20
+        },
+        "requirements": {
+            "level": 1
+        }
+    },
+    "3": {
+        "name": "Royal Trident",
+        "description": "In this world, it's kill or be killed.",
+        "weapon": {
+            "race": {
+                "human": {
+                    "dmgBonus": {
+                        "formula": "* 1.8",
+                        "humanReadable": "+80%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 100,
+            "prestige": 2
         }
     }
 }
