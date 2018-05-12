@@ -30,7 +30,7 @@ module.exports = class Inventory {
     fetchItems() {
         var allItems = {};
         if (this.rawInventory != null) {
-            for (let [id, quantity] of Object.entries(this.rawInventory)) {
+            for (let id of Object.keys(this.rawInventory)) {
                 allItems[id] = this.fetchItem(id);
             }
         }
@@ -72,7 +72,7 @@ module.exports = class Inventory {
                 this.inventory[items[i]].gotNumber += quantities[i];
             }
             this.refreshRawInv();
-            poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.profileId}'`).then(success => {
+            poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.profileId}'`).then(() => {
                 cache.set('inventory', JSON.stringify(this.rawInventory));
             });
         } else {
@@ -93,7 +93,7 @@ module.exports = class Inventory {
                     if (this.inventory[items[i]].gotNumber >= quantities[i]) {
                         this.inventory[items[i]].gotNumber -= quantities[i];
                         this.refreshRawInv();
-                        poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.profileId}'`).then(success => {
+                        poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.profileId}'`).then(() => {
                             cache.set('inventory', JSON.stringify(this.rawInventory));
                         });
                     } else {
