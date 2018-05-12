@@ -127,5 +127,17 @@
         "fields": {
             "Args": "**Item Name** : [string]"
         }
+    },
+    "info": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Bot Informations",
+        "path": "core/commands/info",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Bot",
+        "shortDesc": "Displays Bot's Informations"
     }
 }
