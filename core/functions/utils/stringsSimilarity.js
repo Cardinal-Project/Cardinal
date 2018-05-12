@@ -1,4 +1,4 @@
-function similarity(s1, s2) {
+module.exports = function(s1, s2) {
     var longer = s1;
     var shorter = s2;
     if (s1.length < s2.length) {
