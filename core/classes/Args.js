@@ -51,4 +51,8 @@ module.exports = class Args {
         }
         return index;
     }
+
+    isEmpty() {
+        return this.args.length > 1 ? true : false;
+    }
 }
