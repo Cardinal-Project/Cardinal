@@ -1,7 +1,6 @@
 const similarity = require('./../../functions/utils/stringsSimilarity');
 const poolQuery = require('./../../functions/database/poolQuery');
 const items = require('./../../data/items.json');
-const Discord = require('discord.js');
 const Cache = require('./../Cache');
 module.exports = class Inventory {
     constructor(profileId, inventoryObject) {
@@ -22,6 +21,10 @@ module.exports = class Inventory {
         return item;
     }
 
+    static fetchItem(itemId) {
+        return items[itemId];
+    }
+
     fetchItems() {
         var allItems = {};
         if (this.rawInventory != null) {
@@ -33,7 +36,7 @@ module.exports = class Inventory {
     }
 
     static findItem(itemName) {
-        var allItems = new Discord.Collection();
+        var allItems = new Map();
         for (let [id, item] of Object.entries(items)) {
             allItems.set(id, similarity(itemName, item.name));
         }
@@ -42,7 +45,14 @@ module.exports = class Inventory {
             yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
         }
 
-        return allItems.firstKey();
+        var itemFound = 0;
+        for (let [key, value] of allItems) {
+            if (itemFound == 0) {
+                itemFound = key;
+            }
+        }
+
+        return itemFound;
     }
 
     /** 
