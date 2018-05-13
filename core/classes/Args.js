@@ -12,6 +12,8 @@ module.exports = class Args {
     addArg(key, value) {
         key.length == 1 ? this.args.push(`-${key}`) : this.args.push(`--${key}`);
         value != null ? this.args.push(value) : null;
+        this.string = this.args.join(this.separator);
+        return this;
     }
     
     /**
@@ -24,6 +26,8 @@ module.exports = class Args {
         } else {
             delete this.args[this.args.indexOf(key)]
         }
+        this.string = this.args.join(this.separator);
+        return this;
     }
     
     /**
