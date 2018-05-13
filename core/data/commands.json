@@ -139,5 +139,17 @@
         },
         "category": "Bot",
         "shortDesc": "Displays Bot's Informations"
+    },
+    "fight": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Adventure",
+        "path": "core/commands/fight",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Starts an adventure"
     }
 }
