@@ -3,7 +3,7 @@ const fight = require('./../../functions/formulas/fight');
 const xp = require('./../../functions/formulas/xp');
 const Inventory = require('./Inventory');
 const Cache = require('./../Cache');
-const Guild = require('./Guild');
+// const Guild = require('./Guild');
 module.exports = class Player {
     constructor(profileId) {
         this.profileId = profileId;
@@ -35,11 +35,7 @@ module.exports = class Player {
             this.attributes.hp = attributes.HPFromVitality(this.attributes.vit);
             this.attributes.stamina = attributes.staminaFromVitality(this.attributes.vit);
 
-            this.fight = {
-                fightTime : fight.fightTimeFromStamina(this.attributes.stamina),
-                turnSpeed : fight.turnSpeed(this.attributes.dexterity)
-            }
-            this.fight.turnNumber = fight.turnNumber(this.fight.fightTime, this.fight.turnSpeed);
+            this.fight = this.fightData(this.attributes.stamina);
 
             this.skills = cache.get('skills');
             /*this.job = this.skills.job;
@@ -47,5 +43,14 @@ module.exports = class Player {
             this.jobLevel = this.skills.jobLevel;*/
         }
         callback.bind(this)();
+    }
+
+    fightData(stamina) {
+        var fightInfo = {
+            fightTime : Math.floor(fight.fightTimeFromStamina(stamina) / 60),
+            turnSpeed : fight.turnSpeed(this.attributes.dex)
+        }
+        fightInfo.turnNumber = Math.floor(fight.turnNumber(fightInfo.fightTime, fightInfo.turnSpeed) * 60);
+        return fightInfo;
     }
 }
