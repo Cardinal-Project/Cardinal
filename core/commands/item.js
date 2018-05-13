@@ -3,9 +3,9 @@ const Args = require('./../classes/Args');
 const Discord = require('discord.js');
 module.exports = function(bot, message) {
     const args = new Args(message.content, ' ');
+    args.removeArg(args.args[0]);
     if (!args.isEmpty()) {
-        args.args.shift();
-        var item = Inventory.fetchItem(Inventory.findItem(args.string));
+        var item = Inventory.fetchItem(Inventory.findItem(args.string.trim()));
         
         // Checking Requirements
         var requirements = ``;
