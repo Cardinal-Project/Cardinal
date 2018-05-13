@@ -43,5 +43,23 @@
             "level": 100,
             "prestige": 2
         }
+    },
+    "4": {
+        "name": "Forsaken Bow",
+        "description": "Overcome the urge of the dark side.",
+        "weapon": {
+            "race": {
+                "human": {
+                    "dmgBonus": {
+                        "formula": "* 1.06",
+                        "humanReadable": "+6%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 6
+            
+        }
     }
 }
