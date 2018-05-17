@@ -24,6 +24,7 @@ module.exports = class Inventory {
     static fetchItem(itemId) {
         var item = items[itemId];
         item.type = Object.keys(item)[2];
+        item.id = itemId;
         return item;
     }
 
@@ -66,6 +67,7 @@ module.exports = class Inventory {
         const cache = new Cache(this.profileId, 'profileData.json');
         if (items.length === quantities.length) {
             for (let i = 0; i < items.length; i++) {
+                items[i] = String(items[i]);
                 if (this.inventory[items[i]] == undefined) {
                     this.inventory[items[i]] = this.fetchItem(items[i]);
                 }
@@ -89,6 +91,7 @@ module.exports = class Inventory {
         const cache = new Cache(this.profileId, 'profileData.json');
         if (items.length === quantities.length) {
             for (let i = 0; i < items.length; i++) {
+                items[i] = String(items[i]);
                 if (this.inventory[items[i]] != undefined) {
                     if (this.inventory[items[i]].gotNumber >= quantities[i]) {
                         this.inventory[items[i]].gotNumber -= quantities[i];
