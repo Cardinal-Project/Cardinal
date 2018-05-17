@@ -150,6 +150,39 @@
             "reason": 0
         },
         "category": "Game",
-        "shortDesc": "Starts an adventure"
+        "shortDesc": "Starts an adventure",
+        "fields": {
+            "Args": "**Stamina** : [int]"
+        }
+    },
+    "check": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Item Check",
+        "path": "core/commands/check",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Other",
+        "shortDesc": "Checks the equipability or the usability of an item",
+        "fields": {
+            "Args": "**Item Name** : [string]"
+        }
+    },
+    "use": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Item Usage",
+        "path": "core/commands/use",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Uses the item specified",
+        "fields": {
+            "Args": "**Item Name** : [string]"
+        }
     }
 }
