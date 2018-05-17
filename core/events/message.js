@@ -70,7 +70,7 @@ module.exports = function(bot, message) {
         } catch(err) {
             const embed = new Discord.RichEmbed()
                 .setTitle('An internal error occured')
-                .setDescription(`**Error Code** : 3011UE\nPlease report the following error the development team of **${message.author.username}**.\n\`\`\`xl\n${err}\`\`\``)
+                .setDescription(`Please report the following error the development team of **${message.author.username}**.\n\`\`\`xl\n${err}\`\`\``)
                 .setColor('RED');
             message.channel.send({embed});
         }
