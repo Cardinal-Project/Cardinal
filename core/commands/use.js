@@ -1,6 +1,6 @@
+const Inventory = require('./../classes/Cardinal/items/Inventory');
 const poolQuery = require('./../functions/database/poolQuery');
 const usability = require('./../functions/helpers/usability');
-const Inventory = require('./../classes/Cardinal/Inventory');
 const User = require('./../classes/Discord/User');
 const Cache = require('./../classes/Cache');
 const Args = require('./../classes/Args');
