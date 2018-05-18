@@ -1,7 +1,7 @@
 const attributes = require('./../../functions/formulas/attributes');
 const fight = require('./../../functions/formulas/fight');
 const xp = require('./../../functions/formulas/xp');
-const Inventory = require('./Inventory');
+const Inventory = require('./items/Inventory');
 const Cache = require('./../Cache');
 // const Guild = require('./Guild');
 module.exports = class Player {
@@ -21,14 +21,14 @@ module.exports = class Player {
             this.title = cache.get('title');
 
             this.xp = cache.get('xp');
-            this.level = xp.levelFromXP(xp)[0];
+            this.level = xp.levelFromXP(this.xp)[0];
             this.xpEndLevel = xp.XPToLevelUp(this.level);
             this.prestige = cache.get('prestige');
             this.gold = cache.get('gold');
             this.hp = cache.get('hp');
             this.stamina = cache.get('stamina');
 
-            this.inventory = new Inventory(this.profileId, cache.get('inventory'));
+            this.inventory = new Inventory(this, cache.get('inventory'));
 
             this.availablePoints = JSON.parse(cache.get('attributes')).availablePoints;
             this.attributes = JSON.parse(cache.get('attributes')).attributes;
