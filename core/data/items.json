@@ -48,8 +48,8 @@
         "name": "Forsaken Bow",
         "description": "Overcome the urge of the dark side.",
         "weapon": {
-            "race": {
-                "human": {
+            "class": {
+                "archer": {
                     "dmgBonus": {
                         "formula": "* 1.06",
                         "humanReadable": "+6%"
@@ -59,6 +59,312 @@
         },
         "requirements": {
             "level": 6
+            
+        }
+    },
+    "5": {
+        "name": "Fragile Bow",
+        "description": "Weak bow made from sticks and string.",
+        "weapon": {
+            "class": {
+                "archer": {
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
+    },
+    "6": {
+        "name": "Weak Staff",
+        "description": "Are you sure this isn't just a fancy stick?",
+        "weapon": {
+            "class": {
+                "wizard": {
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
+    },
+    "7": {
+        "name": "Wood Carved Knife",
+        "description": "Where did you even find this?",
+        "weapon": {
+            "class": {
+                "rogue": {
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
+    },
+    "8": {
+        "name": "Wooden Mace",
+        "description": "Whoa there watch out for splinters.",
+        "weapon": {
+            "class": {
+                "paladin": {
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
+    },
+    "9": {
+        "name": "Wooden Short Sword",
+        "description": "Well i guess this will work.",
+        "weapon": {
+            "class": {
+                "wizard": {
+                    "dmgBonus": {
+                        "formula": "* 1.05",
+                        "humanReadable": "+5%"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
+    },
+    "10": {
+        "name": "Tattered Rags",
+        "description": "Well at least im not naked.",
+        "chestplate": {
+            "class": {
+                "archer": {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "wizard" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "rogue" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "11": {
+        "name": "Torn cloth",
+        "description": "Umm this doesn't cover much.",
+        "pants": {
+            "class": {
+                "archer": {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "wizard": {
+                    "attribsBonus": {
+                        "def" : "1"
+                    }
+                },
+                "rogue" : {
+                    "attribsBonus": {
+                        "def" : "1"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "12": {
+        "name": "Moss boots",
+        "description": "Do these things even help?",
+        "boots": {
+            "class": {
+                "archer": {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "wizard" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "rogue" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "13": {
+        "name": "Sheepskin Hat",
+        "description": "Hmm maybe i should have washed it first.",
+        "helmet": {
+            "class": {
+                "archer": {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "wizard" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "rogue" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "14": {
+        "name": "Clay Chestplate",
+        "description": "Sure hope it doesn't rain.",
+        "chestplate": {
+            "class": {
+                "warrior": {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "paladin" : {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "tank" : {
+                    "attribsBonus": {
+                        "def": "3"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "15": {
+        "name": "Clay Pants",
+        "description": "Buyer beware, not waterproof.",
+        "pants": {
+            "class": {
+                "warrior": {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "paladin" : {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "tank" : {
+                    "attribsBonus": {
+                        "def": "3"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+    "16": {
+        "name": "Stone Boots",
+        "description": "Why am i even wearing these?",
+        "boots": {
+            "class": {
+                "warrior": {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "paladin" : {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "tank" : {
+                    "attribsBonus": {
+                        "def": "3"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
+            
+        }
+    },
+        "17": {
+        "name": "Acorn Helmet",
+        "description": "They say i am NUTS!",
+        "helmet": {
+            "class": {
+                "warrior": {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "paladin" : {
+                    "attribsBonus": {
+                        "def": "2"
+                    }
+                },
+                "tank" : {
+                    "attribsBonus": {
+                        "def": "3"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 3
             
         }
     }
