@@ -1,0 +1,14 @@
+{
+    "1": {
+        "name": "Frenzy Boar",
+        "description": "No worries, this one is not a boss.",
+        "boss": null,
+        "attributes": {
+            "str": 0,
+            "def": 0,
+            "int": 0,
+            "dex": 0,
+            "vit": 0
+        }
+    }
+}
