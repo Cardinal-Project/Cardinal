@@ -184,5 +184,20 @@
         "fields": {
             "Args": "**Item Name** : [string]"
         }
+    },
+    "equip": {
+        "botPerms": 1,
+        "discordPerms": 0,
+        "name": "Item Equipment",
+        "path": "core/commands/equip",
+        "enabled": {
+            "type": 1,
+            "reason": 0
+        },
+        "category": "Game",
+        "shortDesc": "Equips the item specified",
+        "fields": {
+            "Args": "**Item Name** : [string]"
+        }
     }
 }
