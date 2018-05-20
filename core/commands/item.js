@@ -21,15 +21,31 @@ module.exports = function(bot, message) {
             for (let [buff, number] of Object.entries(item.potion)) {
                 effects += `**${buff[0].toUpperCase() + buff.slice(1)}** : ${number}\n`;
             }
-        } else if (item.type == 'weapon') {
-            if (item.weapon.class != undefined) {
-                for (let [_class, data] of Object.entries(item.weapon.class)) {
-                    classBonus += `**${_class[0].toUpperCase() + _class.slice(1)}** : ${data.dmgBonus.humanReadable}\n`;
+        } else if (['weapon', 'shield', 'helmet', 'chestplate', 'pants', 'boots'].indexOf(item.type) != -1) {
+            const checkAttribsBonus = function(classRace, attribsBonus) {
+                var text = '';
+                if (attribsBonus != undefined) {
+                    for (let [attribute, number] of Object.entries(attribsBonus)) {
+                        text += `**${classRace[0].toUpperCase() + classRace.slice(1)}** : ${number >= 0 ? '+' : '-'}${number}pts on ${attribute[0].toUpperCase() + attribute.slice(1)}\n`;
+                    }
+                }
+                return text;
+            }
+
+            if (item[item.type].class != undefined) {
+                for (let [_class, data] of Object.entries(item[item.type].class)) {
+                    if (data.dmgBonus != undefined)
+                        classBonus += `**${_class[0].toUpperCase() + _class.slice(1)}** : ${data.dmgBonus.humanReadable} on Damages\n`;
+
+                    classBonus += checkAttribsBonus(_class, data.attribsBonus);
                 }
             }
-            if (item.weapon.race != undefined) {
-                for (let [race, data] of Object.entries(item.weapon.race)) {
-                    raceBonus += `**${race[0].toUpperCase() + race.slice(1)}** : ${data.dmgBonus.humanReadable}\n`;
+            if (item[item.type].race != undefined) {
+                for (let [race, data] of Object.entries(item[item.type].race)) {
+                    if (data.dmgBonus != undefined)
+                        raceBonus += `**${race[0].toUpperCase() + race.slice(1)}** : ${data.dmgBonus.humanReadable} on Damages\n`;
+
+                    raceBonus += checkAttribsBonus(race, data.attribsBonus);
                 }
             }
         }
