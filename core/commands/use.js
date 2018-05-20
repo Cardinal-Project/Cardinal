@@ -1,6 +1,6 @@
-const Inventory = require('./../classes/Cardinal/items/Inventory');
 const poolQuery = require('./../functions/database/poolQuery');
 const usability = require('./../functions/helpers/usability');
+const Item = require('./../classes/Cardinal/items/Item');
 const User = require('./../classes/Discord/User');
 const Cache = require('./../classes/Cache');
 const Args = require('./../classes/Args');
@@ -15,7 +15,7 @@ module.exports = function(bot, message) {
             profile.init(() => {
                 const player = profile.player;
                 player.init(() => {
-                    var item = Inventory.fetchItem(Inventory.findItem(args.join(' ')));
+                    var item = new Item(args.join(' '));
                     if (usability(item.id, player)) {
                         if (item.type == 'potion') {
                             const cache = new Cache(profile.id, 'profileData.json');
@@ -31,7 +31,7 @@ module.exports = function(bot, message) {
                                 changes += ' ';
                             }
                             poolQuery(`UPDATE profiles SET ${changes} WHERE profileId='${profile.id}'`).then(() => {
-                                player.inventory.remove([item.id], [1]);
+                                player.inventory.remove(new Map([item.id, 1]));
                                 const embed = new Discord.RichEmbed()  
                                     .setTitle(`Success`)
                                     .setDescription(`You successfully used 1x **${item.name}**.`)
