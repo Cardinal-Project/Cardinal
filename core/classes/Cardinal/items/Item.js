@@ -11,7 +11,7 @@ module.exports = class Item {
         } else {
             this.id = Item.findItem(item);
         }
-        for (let [key, value] of Object.entries(items[this.id])) {
+        for (let [key, value] of Object.entries(this.fetchItem())) {
             this[key] = value;
         }
     }
@@ -19,7 +19,7 @@ module.exports = class Item {
     fetchItem() {
         var item = items[this.id];
         item.type = Object.keys(item)[2];
-        item.id = itemId;
+        item.id = this.id;
         return item;
     }
 
