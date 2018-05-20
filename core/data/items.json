@@ -367,5 +367,32 @@
             "level": 3
             
         }
+    },
+    "18": {
+        "name": "Cracked Shield",
+        "description": "This might block...something",
+        "shield": {
+            "class": {
+                "warrior": {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "paladin" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                },
+                "tank" : {
+                    "attribsBonus": {
+                        "def": "1"
+                    }
+                }
+            }
+        },
+        "requirements": {
+            "level": 1
+            
+        }
     }
 }
