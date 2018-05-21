@@ -8,9 +8,8 @@ module.exports = function(bot, message) {
             profile.init(() => {
                 const player = profile.player;
                 player.init(async () => {
-                    const discordUser = await bot.fetchUser(user.id);
                     const embed = new Discord.RichEmbed()
-                        .setAuthor(`${player.nickname}${player.title == null ? '' : `, ${player.title}`}`, discordUser.avatarURL)
+                        .setAuthor(`${player.nickname}${player.title == null ? '' : `, ${player.title}`}`, user.discord.avatarURL)
                         .addField(`Type`, `${player.race[0].toUpperCase() + player.race.slice(1)} ${player.class[0].toUpperCase() + player.class.slice(1)}`, true)
                         .addField(`Level`, `\`[P${player.prestige}]\` **Lv${player.level}**`, true)
                         .addField(`Experience`, `${player.xp} XP / ${player.xpEndLevel} XP`, true)
