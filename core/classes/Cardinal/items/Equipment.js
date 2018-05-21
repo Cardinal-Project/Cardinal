@@ -17,10 +17,10 @@ module.exports = class Equipment {
 
     refreshRawEquipment(callback) {
         var equipment = {};
-        for (let [itemType, item] of this.equipment) {
+        for (let [itemType, item] of Object.entries(this.equipment)) {
             equipment[itemType] = item.id;
         }
-        poolQuery(`UPDATE profiles SET equipment='${this.rawEquipment}' WHERE profileId='${this.player.id}'`).then(() => {
+        poolQuery(`UPDATE profiles SET equipment='${JSON.stringify(this.rawEquipment)}' WHERE profileId='${this.player.id}'`).then(() => {
             const cache = new Cache(this.player.id, 'profileData.json');
             cache.set('equipment', this.rawEquipment);
             callback();
@@ -28,8 +28,8 @@ module.exports = class Equipment {
         return equipment;
     }
 
-    fetchItem() {
-        var item = items[this.id];
+    fetchItem(itemId) {
+        var item = new Item(itemId);
         item.type = Object.keys(item)[2];
         item.id = itemId;
         item.usability = usability(item.id, this.player);
@@ -47,12 +47,12 @@ module.exports = class Equipment {
     }
 
     equip(itemId) {
-        var item = Item.fetchItem(itemId);
+        var item = this.fetchItem(itemId);
         if (item.usability) {
             if (this.equipment[item.type] == undefined) {
                 this.equipment[item.type] = itemId;
                 this.rawEquipment = this.refreshRawEquipment(() => {
-                    this.player.inventory.remove(new Map([itemId, 1]));
+                    this.player.inventory.remove(new Map([[itemId, 1]]));
                 });
             } else {
                 return this.unEquip(itemId);
@@ -67,7 +67,7 @@ module.exports = class Equipment {
         if (this.equipment[item.type] != undefined) {
             delete this.equipment[item.type];            
             this.rawEquipment = this.refreshRawEquipment(() => {
-                this.player.inventory.add(new Map([itemId, 1]));
+                this.player.inventory.add(new Map([[itemId, 1]]));
             });
         } else {
             return this.equip(itemId);
