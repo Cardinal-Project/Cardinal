@@ -1,3 +1,4 @@
 const Discord = require('discord.js');
 const shardManager = new Discord.ShardingManager('./bot.js');
-shardManager.spawn(1);
+const config = require('./config.json');
+shardManager.spawn(config.bot.shards);
