@@ -10,5 +10,18 @@
             "dex": 0,
             "vit": 0
         }
+    },
+
+    "2": {
+        "name": "Innocent Forest Creature",
+        "description": "Awww, so cute you might want to pet it.",
+        "boss": null,
+        "attributes": {
+            "str": 0,
+            "def": 0,
+            "int": 0,
+            "dex": 0,
+            "vit": 0
+        }
     }
 }
