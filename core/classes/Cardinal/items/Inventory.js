@@ -15,7 +15,7 @@ module.exports = class Inventory {
             this.rawInventory[id] = item.gotNumber;
         }
 
-        poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.player.id}'`).then(() => {
+        poolQuery(`UPDATE profiles SET inventory='${JSON.stringify(this.rawInventory)}' WHERE profileId='${this.player.profileId}'`).then(() => {
             const cache = new Cache(this.player.id, "profileData.json");
             cache.set('inventory', JSON.stringify(this.rawInventory));
         });
