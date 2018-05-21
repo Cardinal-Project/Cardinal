@@ -1,9 +1,10 @@
-const Discord = require('discord.js');
-const User = require('./../classes/Discord/User');
+const isEmpty = require('./../functions/utils/isEmpty');
+const CardinalError = require('./../classes/BotError');
 const Guild = require('./../classes/Discord/Guild');
+const User = require('./../classes/Discord/User');
 const Command = require('./../classes/Command');
 const Perms = require('./../classes/BotPerms');
-const isEmpty = require('./../functions/utils/isEmpty');
+const Discord = require('discord.js');
 module.exports = function(bot, message) {
     if (!message.author.bot) {
         try {
@@ -20,13 +21,10 @@ module.exports = function(bot, message) {
                                 try {
                                     require(`./../../${path}`)(bot, message);
                                 } catch (err) {
-                                    var modifiedErr = require('util').inspect(err, false, null).split('\n');
-                                    for (i = 0; i <= 1; i++) {
-                                        modifiedErr.pop();
-                                    }
+                                    const error = new CardinalError(err);
                                     const embed = new Discord.RichEmbed()
                                         .setTitle('An internal error occured')
-                                        .setDescription(`Please report the following error to the development team of **${bot.user.username}**.\n\`\`\`xl\n${modifiedErr.join('\n')}\`\`\``)
+                                        .setDescription(`Please report the following error to the development team of **${bot.user.username}**.\n\`\`\`xl\n${error.string}\`\`\``)
                                         .setColor('RED');
                                     message.channel.send({embed});
                                 }
