@@ -7,6 +7,7 @@ const Perms = require('./../BotPerms');
 module.exports = class DiscordUser {
     constructor(user) {
         this.id = user.id;
+        this.discord = user;
     }
 
     async init(callback) {
