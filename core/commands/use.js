@@ -31,7 +31,7 @@ module.exports = function(bot, message) {
                                 changes += ' ';
                             }
                             poolQuery(`UPDATE profiles SET ${changes} WHERE profileId='${profile.id}'`).then(() => {
-                                player.inventory.remove(new Map([item.id, 1]));
+                                player.inventory.remove(new Map([[item.id, 1]]));
                                 const embed = new Discord.RichEmbed()  
                                     .setTitle(`Success`)
                                     .setDescription(`You successfully used 1x **${item.name}**.`)
