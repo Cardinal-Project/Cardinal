@@ -1,0 +1,26 @@
+{
+    "cooking": {
+        "name": "Cooking",
+        "skills": {
+            "fishing": {
+
+            }
+        }
+    },
+    "alchemy": {
+        "name": "Alchemy",
+        "skills": {
+            "brewing": {
+
+            }
+        }
+    },
+    "blacksmithing": {
+        "name": "Blacksmithing",
+        "skills": {
+            "mining": {
+                
+            }
+        }
+    }
+}
