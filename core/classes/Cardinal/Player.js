@@ -4,6 +4,7 @@ const xp = require('./../../functions/formulas/xp');
 const Inventory = require('./items/Inventory');
 const Equipment = require('./items/Equipment');
 const Cache = require('./../Cache');
+const poolQuery = require(`./../../functions/database/poolQuery`)
 // const Guild = require('./Guild');
 module.exports = class Player {
     constructor(profileId) {
@@ -46,6 +47,7 @@ module.exports = class Player {
         callback.bind(this)();
     }
 
+
     fightData(stamina) {
         var fightInfo = {
             fightTime : Math.floor(fight.fightTimeFromStamina(stamina) / 60),
@@ -53,5 +55,22 @@ module.exports = class Player {
         }
         fightInfo.turnNumber = Math.floor(fight.turnNumber(fightInfo.fightTime, fightInfo.turnSpeed) * 60);
         return fightInfo;
+    }
+
+    assignPoints(attribute, quantity) {
+        const cache = new Cache(this.profileId, 'profileData.json');
+        if (this.availablePoints >= quantity){
+            this.attributes[attribute] += quantity
+            this.availablePoints -= quantity
+            var attributes = {
+                availablePoints: this.availablePoints,
+                attributes: this.attributes
+            }
+            cache.set('attributes', JSON.stringify(attributes));
+            poolQuery(`UPDATE profiles SET attributes='${JSON.stringify(attributes)}' WHERE profileId='${this.profileId}'`);
+            messageChannel.send(`You assigned ${quantity} points to ${attribute}.`)
+        } else {
+            return new RangeError(`You can not asssign greater than ${this.availablePoints} points.`)
+        }
     }
 }
