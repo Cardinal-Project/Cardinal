@@ -1,16 +1,4 @@
 {
-    "eval": {
-        "botPerms": 4,
-        "discordPerms": 0,
-        "name": "Code Evaluation",
-        "path": "core/commands/eval",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Admin",
-        "shortDesc": "Evaluates Node.JS code"
-    },
     "ping": {
         "botPerms": 1,
         "discordPerms": 0,
@@ -22,18 +10,6 @@
         },
         "category": "Bot",
         "shortDesc": "Checks bot's latency"
-    },
-    "query": {
-        "botPerms": 16,
-        "discordPerms": 0,
-        "name": "Database Query",
-        "path": "core/commands/query",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Admin",
-        "shortDesc": "Queries database"
     },
     "perms": {
         "botPerms": 64,
@@ -65,42 +41,6 @@
             "Args": "**Command Name** : [string]"
         }
     },
-    "stats": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Character Statistics",
-        "path": "core/commands/stats",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Game",
-        "shortDesc": "Shows character statistics"
-    },
-    "start": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Character Creation",
-        "path": "core/commands/start",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Game",
-        "shortDesc": "Starts character creation wizard"
-    },
-    "restart": {
-        "botPerms": 64,
-        "discordPerms": 0,
-        "name": "Reloading Bot",
-        "path": "core/commands/restart",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Admin",
-        "shortDesc": "Restarts the bot"
-    },
     "inventory": {
         "botPerms": 1,
         "discordPerms": 0,
@@ -112,21 +52,6 @@
         },
         "category": "Game",
         "shortDesc": "Shows player's inventory"
-    },
-    "item": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Item Description",
-        "path": "core/commands/item",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Game",
-        "shortDesc": "Shows item's informations",
-        "fields": {
-            "Args": "**Item Name** : [string]"
-        }
     },
     "info": {
         "botPerms": 1,
@@ -153,51 +78,6 @@
         "shortDesc": "Starts an adventure",
         "fields": {
             "Args": "**Stamina** : [int]"
-        }
-    },
-    "check": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Item Check",
-        "path": "core/commands/check",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Other",
-        "shortDesc": "Checks the equipability or the usability of an item",
-        "fields": {
-            "Args": "**Item Name** : [string]"
-        }
-    },
-    "use": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Item Usage",
-        "path": "core/commands/use",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Game",
-        "shortDesc": "Uses the item specified",
-        "fields": {
-            "Args": "**Item Name** : [string]"
-        }
-    },
-    "equip": {
-        "botPerms": 1,
-        "discordPerms": 0,
-        "name": "Item Equipment",
-        "path": "core/commands/equip",
-        "enabled": {
-            "type": 1,
-            "reason": 0
-        },
-        "category": "Game",
-        "shortDesc": "Equips the item specified",
-        "fields": {
-            "Args": "**Item Name** : [string]"
         }
     }
 }
