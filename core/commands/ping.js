@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-module.exports = function(bot, message) {
+exports.run = function(bot, message) {
+    const Discord = require('discord.js');
     const embed = new Discord.RichEmbed()
         .addField('WebSocket Heartbeat', `${Math.floor(bot.ping)} ms`, true)
         .addField('Host Ping', `Computing...`, true)
@@ -29,4 +29,15 @@ module.exports = function(bot, message) {
             .setColor('RED');
         message.channel.send({embed});
     })
+}
+
+exports.infos = {
+    name: "Client Ping",
+    perms: {
+        bot: 1,
+        discord: null
+    },
+    enabled: null,
+    category: "Bot",
+    description: "Checks bot's latency"
 }

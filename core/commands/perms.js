@@ -1,11 +1,8 @@
 const poolQuery = require('./../functions/database/poolQuery');
-const isEmpty = require('./../functions/utils/isEmpty');
 const BotPerms = require('./../classes/BotPerms');
-const config = require('./../../config.json');
 const Cache = require('./../classes/Cache');
-const Args = require('./../classes/Args');
 const Discord = require('discord.js');
-module.exports = async function(bot, message) {
+exports.run = function(bot, message, args) {
     const sendInvalidArgsEmbed = function() {
         const embed = new Discord.RichEmbed()
             .setTitle('Invalid Arguments')
@@ -14,7 +11,6 @@ module.exports = async function(bot, message) {
         message.channel.send({embed});
     }
 
-    const args = new Args(message.content, ' ');
     args.args.shift();
     if (args.args.length == 3) {
         var userid = message.mentions.members.size == 1 ? message.mentions.members.first().id : args[1];
@@ -44,5 +40,34 @@ module.exports = async function(bot, message) {
         }
     } else {
         sendInvalidArgsEmbed();
+    }
+}
+
+exports.infos = {
+    name: "User Permissions Management",
+    perms: {
+        bot: 64,
+        discord: null
+    },
+    enabled: null,
+    category: "Admin",
+    description: "Manages the permissions of a Cardinal user",
+    args: {
+        1: {
+            types: ['string'],
+            desc: "`[*]` **Action**",
+            allowedWords = ['add', 'remove', 'set']
+        },
+        2: {
+            types: ['user'],
+            desc: "`[*]` **User** (UserID, UserMention)",
+            size: 1,
+            length: [16, 19]
+        },
+        3: {
+            types: ['string', 'number'],
+            desc: "`[*]` **Value** (add, remove: permName | set: bitfield)",
+            size: 1
+        }
     }
 }
