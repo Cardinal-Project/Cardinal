@@ -1,12 +1,9 @@
-const poolQuery = require('./../functions/database/poolQuery');
-const Cache = require('./../classes/Cache');
-const Discord = require('discord.js');
-const util = require('util');
-module.exports = function(bot, message) {
-    const prefix = new Cache(message.guild.id, 'guildSettings.json').get('prefix');
+exports.run = function(bot, message, args) {
+    const poolQuery = require('./../functions/database/poolQuery');
+    const Discord = require('discord.js');
+    const util = require('util');
     try {
-        messageContentLengthReduced = message.content.length - (5 + prefix.length);
-        poolQuery(message.content.substr(6 + prefix.length, messageContentLengthReduced)).then(result => {
+        poolQuery(args.args.join(' ')).then(result => {
             message.channel.send(util.inspect(result, false, null), {code:"xl"}).catch(err => {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`Message Sending Error`)
@@ -20,5 +17,23 @@ module.exports = function(bot, message) {
         })
     } catch (err) {
         message.channel.send(`An error occured.\n\`\`\`xl\n${err}\n\`\`\``);
+    }
+}
+
+exports.infos = {
+    name: "Database Query",
+    perms: {
+        bot: 16,
+        discord: null
+    },
+    enabled: null,
+    category: "Admin",
+    description: "Queries database",
+    args: {
+        1: {
+            types: ['string'],
+            desc: "`[*]` **Query**",
+            size: Infinity
+        }
     }
 }

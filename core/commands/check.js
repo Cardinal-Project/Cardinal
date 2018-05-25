@@ -1,27 +1,40 @@
-const usability = require('./../functions/helpers/usability');
-const Item = require('./../classes/Cardinal/items/Item');
-const User = require('./../classes/Discord/User');
-const Args = require('./../classes/Args');
-const Discord = require('discord.js');
-module.exports = function(bot, message) {
-    const user = new User(message.author);
-    user.init(async () => {
-        const profile = user.activeProfile;
-        if (profile != null) {
-            profile.init(async () => {
-                const player = profile.player;
-                player.init(() => {
-                    const args = new Args(message.content, ' ').args;
-                    args.shift();
-                    message.channel.send(player.inventory.fetchItem(Item.findItem(args.join(' '))).usability);
-                });
+exports.run = function(bot, message, args, user) {
+    const usability = require('./../functions/helpers/usability');
+    const Item = require('./../classes/Cardinal/items/Item');
+    const Discord = require('discord.js');
+    if (user.activeProfile != null) {
+        user.activeProfile.init(async () => {
+            const player = user.activeProfile.player;
+            player.init(() => {
+                message.channel.send(player.inventory.fetchItem(Item.findItem(args.args.join(' '))).usability);
             });
-        } else {
-            const embed = new Discord.RichEmbed()
-                .setTitle('No Profile Found')
-                .setDescription(`No active profile from you has been found. Make sure you have one.`)
-                .setColor('ORANGE');
-            message.channel.send({embed});
+        });
+    }
+    const profile = user.activeProfile;
+    if (profile != null) {
+    } else {
+        const embed = new Discord.RichEmbed()
+            .setTitle('No Profile Found')
+            .setDescription(`No active profile from you has been found. Make sure you have one.`)
+            .setColor('ORANGE');
+        message.channel.send({embed});
+    }
+}
+
+exports.infos = {
+    name: "Item Usability Check",
+    perms: {
+        bot: 1,
+        discord: null
+    },
+    enabled: null,
+    category: "Other",
+    description: "Checks the equipability or the usability of an item",
+    args: {
+        1: {
+            types: ['string'],
+            desc: "`[*]` **Item Name**",
+            size: Infinity
         }
-    });  
+    }
 }

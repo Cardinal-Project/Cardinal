@@ -1,8 +1,6 @@
 const Inventory = require('./../classes/Cardinal/Inventory');
-const Args = require('./../classes/Args');
 const Discord = require('discord.js');
-module.exports = function(bot, message) {
-    const args = new Args(message.content, ' ');
+exports.run = function(bot, message, args, user) {
     args.removeArg(args.args[0]);
     if (!args.isEmpty()) {
         var item = Inventory.fetchItem(Inventory.findItem(args.string.trim()));
@@ -77,5 +75,23 @@ module.exports = function(bot, message) {
             .setDescription(`This command needs the name of an item in order to work.`)
             .setColor(`ORANGE`);
         message.channel.send({embed});
+    }
+}
+
+exports.infos = {
+    name: "Item Description",
+    perms: {
+        bot: 1,
+        discord: null
+    },
+    enabled: null,
+    category: "Items Management",
+    description: "Shows item's informations",
+    args: {
+        1: {
+            types: ['string'],
+            desc: "`[*]` **Item Name**",
+            size: Infinity
+        }
     }
 }

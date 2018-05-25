@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
-const config = require('./../../config.json');
-module.exports = function(bot, message) {
+exports.run = function(bot, message, args) {
+    const Discord = require('discord.js');
+    const config = require('./../../config.json');
     const embed = new Discord.RichEmbed()
         .setTitle(`Restarting ${bot.user.username}`)
         .setDescription(`Please wait, this may take up to 15 seconds.`)
@@ -24,4 +24,15 @@ module.exports = function(bot, message) {
             message.channel.send(embed);
         })
     })
+}
+
+exports.infos = {
+    name: "Bot Restart",
+    perms: {
+        bot: 64,
+        discord: null
+    },
+    enabled: null,
+    category: "Admin",
+    description: "Restarts the bot"
 }
