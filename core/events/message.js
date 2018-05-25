@@ -4,6 +4,7 @@ const Guild = require('./../classes/Discord/Guild');
 const User = require('./../classes/Discord/User');
 const Command = require('./../classes/Command');
 const Perms = require('./../classes/BotPerms');
+const Args = require('./../classes/Args');
 const Discord = require('discord.js');
 module.exports = function(bot, message) {
     if (!message.author.bot) {
@@ -13,13 +14,13 @@ module.exports = function(bot, message) {
                 if (message.content.indexOf(guild.prefix) == 0) {
                     const user = new User(message.author);
                     user.init(() => {
-                        const args = message.content.slice(guild.prefix.length).split(' ');
-                        const command = new Command(args.shift());
+                        const args = new Args(message.content.slice(guild.prefix.length), ' ');
+                        const command = new Command(args.args.shift());
     
-                        if (command.botPerms != undefined) {
+                        if (command.perms.bot != undefined) {
                             const execute = function(path) {
                                 try {
-                                    require(`./../../${path}`)(bot, message);
+                                    require(`./../commands/${command.command}`).run(bot, message, args, user);
                                 } catch (err) {
                                     const error = new CardinalError(err);
                                     const embed = new Discord.RichEmbed()
@@ -31,18 +32,18 @@ module.exports = function(bot, message) {
                             }
         
                             if (user.perms.has('ADMINISTRATOR')) {
-                                execute(command.path);
+                                execute(command.command);
                             } else {
                                 var isAllowed = [false, false];
                                 var missingPerms = [[], []];
-                                for (let element of Perms.decodePermsIntoArray(command.botPerms)) {
+                                for (let element of Perms.decodePermsIntoArray(command.perms.bot)) {
                                     user.perms.has(element) ? isAllowed[0] = true : missingPerms[0].push(element);
                                 }
         
-                                if (command.discordPerms == '') {
+                                if (command.perms.discord == '') {
                                     isAllowed[1] = true;
                                 } else {
-                                    for (let element of command.discordPerms.split(' ')) {
+                                    for (let element of command.perms.discord.split(' ')) {
                                         if (message.member.permissionsIn(message.channel).has(element)) {
                                             isAllowed[1] = true;
                                         }
@@ -50,7 +51,7 @@ module.exports = function(bot, message) {
                                 }
         
                                 if (isAllowed[0] && isAllowed[1]) {
-                                    execute(command.path);
+                                    execute(command.command);
                                 } else {
                                     const stringMissingPerms = `${!isEmpty(missingPerms[0]) ? `**${bot.user.username} Permissions : **` + missingPerms[0].join(' ') + '\n' : ''}${!isEmpty(missingPerms[1]) ? '**Discord Permissions : **' + missingPerms[1].join(' ') : ''}`;
                                     const embed = new Discord.RichEmbed()
