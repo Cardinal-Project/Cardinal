@@ -54,19 +54,25 @@ exports.infos = {
     description: "Manages the permissions of a Cardinal user",
     args: {
         1: {
+            key: "action",
             types: ['string'],
-            desc: "`[*]` **Action**",
+            desc: "**Action**",
+            required: true,
             allowedWords = ['add', 'remove', 'set']
         },
         2: {
+            key: "user",
             types: ['user'],
-            desc: "`[*]` **User** (UserID, UserMention)",
+            desc: "**User** (UserID, UserMention)",
+            required: true,
             size: 1,
             length: [16, 19]
         },
         3: {
+            key: "value",
             types: ['string', 'number'],
-            desc: "`[*]` **Value** (add, remove: permName | set: bitfield)",
+            desc: "**Value** (add, remove: permName | set: bitfield)",
+            required: true,
             size: 1
         }
     }

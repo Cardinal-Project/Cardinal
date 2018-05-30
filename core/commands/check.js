@@ -28,12 +28,14 @@ exports.infos = {
         discord: null
     },
     enabled: null,
-    category: "Other",
+    category: "Items Management",
     description: "Checks the equipability or the usability of an item",
     args: {
         1: {
+            key: "item",
             types: ['string'],
-            desc: "`[*]` **Item Name**",
+            desc: "**Item Name**",
+            required: true,
             size: Infinity
         }
     }

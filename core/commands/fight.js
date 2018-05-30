@@ -62,8 +62,10 @@ exports.infos = {
     description: "Starts an adventure",
     args: {
         1: {
+            key: "stamina",
             types: ['number'],
-            desc: "`[*]` **Stamina Points**",
+            desc: "**Stamina Points**",
+            required: true,
             size: 1
         }
     }

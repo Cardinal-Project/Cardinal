@@ -44,14 +44,16 @@ exports.infos = {
     category: "Game",
     description: "Assigns points to a player's attribute",
     args: {
-        1: {
+        attribute: {
             types: ['string'],
-            desc: "`[*]` **Attribute Name**",
+            desc: "**Attribute Name**",
+            required: true,
             size: 1
         },
-        2: {
+        quantity: {
             types: ['number'],
-            desc: "`[*]` **Points Number**",
+            desc: "**Points Number**",
+            required: true,
             size: 1
         }
     }

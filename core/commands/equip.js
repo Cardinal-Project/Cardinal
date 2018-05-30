@@ -4,9 +4,7 @@ exports.run = function(bot, message, args, user) {
     if (user.activeProfile != null) {
         user.activeProfile.init(() => {
             user.activeProfile.player.init(() => {
-                const args = new Args(message.content, ' ').args;
-                args.shift();
-                message.reply(user.activeProfile.player.equipment.equip(1));
+                // message.reply(user.activeProfile.player.equipment.equip());
             });
         });
     } else {
@@ -25,12 +23,14 @@ exports.infos = {
         discord: null
     },
     enabled: null,
-    category: "Game",
+    category: "Items Management",
     description: "Equips the item specified",
     args: {
         1: {
+            key: "item",
             types: ['string'],
-            desc: "`[*]` **Item Name**",
+            desc: "**Item Name**",
+            required: true,
             size: Infinity
         }
     }

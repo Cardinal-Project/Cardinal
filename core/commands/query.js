@@ -31,8 +31,10 @@ exports.infos = {
     description: "Queries database",
     args: {
         1: {
+            key: "query",
             types: ['string'],
-            desc: "`[*]` **Query**",
+            desc: "**Query**",
+            required: true,
             size: Infinity
         }
     }

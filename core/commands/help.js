@@ -75,8 +75,10 @@ exports.info = {
     description: "Shows help pages",
     args: {
         1: {
+            key: "command",
             types: ['string'],
-            desc: "`[*]` **Command Name**",
+            desc: "**Command Name**",
+            required: false,
             size: 1
         }
     }

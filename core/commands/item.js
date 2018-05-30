@@ -1,7 +1,7 @@
 const Inventory = require('./../classes/Cardinal/Inventory');
 const Discord = require('discord.js');
 exports.run = function(bot, message, args, user) {
-    args.removeArg(args.args[0]);
+    args.remove(args.args[0]);
     if (!args.isEmpty()) {
         var item = Inventory.fetchItem(Inventory.findItem(args.string.trim()));
         
@@ -89,8 +89,10 @@ exports.infos = {
     description: "Shows item's informations",
     args: {
         1: {
+            key: "item",
             types: ['string'],
-            desc: "`[*]` **Item Name**",
+            desc: "**Item Name**",
+            required: true,
             size: Infinity
         }
     }

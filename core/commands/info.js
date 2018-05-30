@@ -3,7 +3,7 @@ exports.run = function(bot, message, args, user) {const Discord = require('disco
         const embed = new Discord.RichEmbed()
             .setAuthor(`Bot Informations`, bot.user.avatarURL)
             .addField(`Shard Count`, bot.shard.count, true)
-            .addField(`Memory Usage`, `${Math.round(10 * process.memoryUsage().heapUsed / 1024 / 1024)/10} MB`, true)
+            .addField(`Memory Usage`, `${Math.round(100 * process.memoryUsage().heapUsed / 1024 / 1024)/100} MB`, true)
             .addField(`Uptime`, `${Math.floor(bot.uptime / 1000 / 60)} minutes`, true)
             .addField(`Server Count`, bot.guilds.size, true)
             .addField(`Member Count`, bot.users.size, true)

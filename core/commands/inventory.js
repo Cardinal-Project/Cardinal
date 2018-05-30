@@ -52,12 +52,14 @@ exports.infos = {
         discord: null
     },
     enabled: null,
-    category: "Game",
+    category: "Items Management",
     description: "Shows player's inventory",
     args: {
         1: {
+            key: "page",
             types: ['number'],
-            desc: "`[*]` **Inventory Page**",
+            desc: "**Inventory Page**",
+            required: true,
             size: 1
         }
     }

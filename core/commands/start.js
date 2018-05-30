@@ -22,14 +22,15 @@ exports.run = function(bot, message, args, user) {
     message.channel.send({embed});
     
     const collected = await message.channel.awaitMessages(filter, {time: 120000, max: 1});
-    const collectedArgs = new Args(collected.first().content, ' ');
+    const collectedArgs = collected.first().content.split(' ');
     var collectedData = {};
     const look = function(keys, type) {
         for (let element of keys) {
             element = element.toLowerCase();
-            if (collectedArgs.args.indexOf(element) != -1) {
+            if (collectedArgs.indexOf(element) != -1) {
                 collectedData[type] = element;
-                collectedArgs.removeArg(element);
+                collectedArgs.remove(element);
+                delete collectedArgs[collectedArgs.indexOf(element)];
             }
         }
     }

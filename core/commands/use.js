@@ -71,12 +71,14 @@ exports.infos = {
         discord: null
     },
     enabled: null,
-    category: "Game",
+    category: "Items Management",
     description: "Uses the item specified",
     args: {
         1: {
+            key: "item",
             types: ['string'],
-            desc: "`[*]` **Item Name**",
+            desc: "**Item Name**",
+            required: true,
             size: Infinity
         }
     }
