@@ -14,9 +14,13 @@ module.exports = function(bot, message) {
                 if (message.content.indexOf(guild.prefix) == 0) {
                     const user = new User(message.author);
                     user.init(() => {
-                        const args = new Args(message.content.slice(guild.prefix.length), ' ');
-                        const command = new Command(args.args.shift());
-    
+                        const commandName = message.content.slice(guild.prefix.length).split(' ')[0];
+                        const command = new Command(commandName);
+
+                        if (command.args != undefined) {
+                            const args = new Args(message.content.slice(guild.prefix.length), command);
+                        }
+                        
                         if (command.perms.bot != undefined) {
                             const execute = function(path) {
                                 try {
