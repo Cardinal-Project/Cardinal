@@ -92,6 +92,15 @@
                 "int": 1,
                 "def": 4
             }
+        },
+        "healer": {
+            "baseAttributes": {
+                "str": 1,
+                "vit": 2,
+                "dex": 3,
+                "int": 3,
+                "def": 1
+            }
         }
     }
 }
